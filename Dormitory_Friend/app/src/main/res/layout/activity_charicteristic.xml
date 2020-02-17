@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CharicteristicActivity">
+
+    <TextView
+        android:id="@+id/information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Information"
+        android:gravity="center"
+        android:textSize="40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:textColor="@color/dormitory"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/information"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:text="이름 : "
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/name_area"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/name"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/information"/>
+
+    <TextView
+        android:id="@+id/nickname"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:text="별명 : "
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/nickname_area"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/university"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/name_area"/>
+    <TextView
+        android:id="@+id/age"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nickname"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:text="나이 : "
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/age_area"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/age"
+        android:layout_marginTop="10dp"
+        android:hint = "ex) 21"
+        app:layout_constraintTop_toBottomOf="@id/nickname_area"/>
+
+    <TextView
+        android:id="@+id/sex"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/age"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:text="성별 : "
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+    <LinearLayout
+        android:id="@+id/sex_area"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/age_area"
+        app:layout_constraintLeft_toRightOf="@id/sex"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/sex_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/man"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=": 남"
+                android:textSize="18dp"/>
+            <RadioButton
+                android:id="@+id/woman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=": 여"
+                android:textSize="18dp"
+                android:layout_marginLeft="30dp"/>
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/university"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sex"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:text="대학교 : "
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/university_area"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/university"
+        android:layout_marginTop="15dp"
+        android:hint = "ex) 동국대학교"
+        app:layout_constraintTop_toBottomOf="@id/sex_area"/>
+    <TextView
+        android:id="@+id/university_exam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/university"
+        android:textSize="11dp"
+        android:text ="분교 캠퍼스는 ex) 동국대학교 경주, 잘못 입력 시 불이익이 있습니다."
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"/>
+
+    <TextView
+        android:id="@+id/major"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/university"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:text="학과 : "
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/major_area"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/major"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/university_area"/>
+
+    <TextView
+        android:id="@+id/grade"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/major"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:text="학년 : "
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/grade_area"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/major"
+        android:layout_marginTop="15dp"
+        android:hint = "ex) 1"
+        app:layout_constraintTop_toBottomOf="@id/major_area"/>
+
+    <TextView
+        android:id="@+id/country"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/grade"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:text="국적 : "
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/country_area"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/major"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/grade_area"/>
+
+
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="저장"
+        android:background="@color/dormitory"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:gravity="center"
+        android:layout_marginBottom="80dp"
+        android:layout_marginLeft="170dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

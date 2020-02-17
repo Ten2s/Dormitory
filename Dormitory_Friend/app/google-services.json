@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "666117222709",
+    "firebase_url": "https://dormitoryfriend.firebaseio.com",
+    "project_id": "dormitoryfriend",
+    "storage_bucket": "dormitoryfriend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666117222709:android:69ca9a747a04152ba81c7c",
+        "android_client_info": {
+          "package_name": "com.example.dormitory_friend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "666117222709-vb50ng44u2eif7eo4n6ka3292fhs2s6q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dormitory_friend",
+            "certificate_hash": "859beabd631dcfc1b983c8a5757c4df23b4952d9"
+          }
+        },
+        {
+          "client_id": "666117222709-4481do28p6epa09rsc5j85kcm7adocql.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs2CSyvsMFSBNSCcsWNQbV9mCXSBPqo6Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "666117222709-4481do28p6epa09rsc5j85kcm7adocql.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
