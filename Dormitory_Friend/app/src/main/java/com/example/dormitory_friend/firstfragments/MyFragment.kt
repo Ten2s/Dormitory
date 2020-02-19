@@ -30,22 +30,29 @@ class MyFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_my, container, false)
 
-        val docRef = FirebaseUtils.db.collection("users").document(FirebaseUtils.getUid())
+        FirebaseUtils.db.collection("users").document(FirebaseUtils.getUid())
+            .get().addOnSuccessListener {
+                documentSnapshot ->
+                FirebaseUtils.db.collection((documentSnapshot.get("university").toString())).document(documentSnapshot.get("sex").toString())
+                    .collection("users").document(FirebaseUtils.getUid())
+                    .get().addOnSuccessListener {
+                            documentSnapshot ->
+                        profile_age.setText("나이 : " + documentSnapshot.get("age").toString())
+                        profile_grade.setText("학년 : " + documentSnapshot.get("grade").toString())
+                        profile_country.setText(documentSnapshot.get("country").toString())
+                        profile_nickname.setText(documentSnapshot.get("nickname").toString())
+                        profile_major.setText(documentSnapshot.get("major").toString())
 
-        docRef.get().addOnSuccessListener {documentSnapshot ->
-            view.profile_age.setText(documentSnapshot.get("age").toString())
-            view.profile_country.setText(documentSnapshot.get("country").toString())
-            view.profile_nickname.setText(documentSnapshot.get("nickname").toString())
-            view.profile_grade.setText(documentSnapshot.get("grade").toString())
-            view.profile_major.setText(documentSnapshot.get("major").toString())
-        }
+                    }
+            }
+
 
         view.modify_txt.setOnClickListener {
             val intent = Intent(context, CharicteristicActivity::class.java)
             startActivity(intent)
         }
 
-        view.logout.setOnClickListener {
+        view.logout_txt.setOnClickListener {
             FirebaseUtils.auth.signOut()
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)

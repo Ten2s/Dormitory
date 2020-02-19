@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
             notice.setAlpha(0.5f)
             chat.setAlpha(0.5f)
             my_page.setAlpha(0.5f)
+            main_title.text = "추천 친구"
         }
 
         chat.setOnClickListener {
@@ -51,6 +52,8 @@ class MainActivity : AppCompatActivity() {
             notice.setAlpha(0.5f)
             chat.setAlpha(1.0f)
             my_page.setAlpha(0.5f)
+            main_title.text = "채팅 목록"
+
         }
 
 
@@ -60,6 +63,8 @@ class MainActivity : AppCompatActivity() {
             notice.setAlpha(1.0f)
             chat.setAlpha(0.5f)
             my_page.setAlpha(0.5f)
+            main_title.text = "게시판"
+
         }
 
         my_page.setOnClickListener {
@@ -68,6 +73,7 @@ class MainActivity : AppCompatActivity() {
             notice.setAlpha(0.5f)
             chat.setAlpha(0.5f)
             my_page.setAlpha(1.0f)
+            main_title.text = "설정"
         }
 
     }

@@ -35,7 +35,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_weight="1"
-            android:src="@drawable/noitce"
+            android:src="@drawable/notice"
             android:alpha="0.5"
             />
         <ImageView
@@ -44,7 +44,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_weight="1"
-            android:src="@drawable/my"
+            android:src="@drawable/mybutton"
             android:alpha="0.5"
             />
 

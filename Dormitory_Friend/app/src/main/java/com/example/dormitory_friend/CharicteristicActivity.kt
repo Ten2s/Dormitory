@@ -12,8 +12,10 @@ class CharicteristicActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_charicteristic)
+        val Ref = FirebaseUtils.db.collection("users").document(FirebaseUtils.getUid())
+       var checked_sex = ""
 
-        var checked_sex : String = "man"
+
         sex_group.setOnCheckedChangeListener { group, checkedId ->
             if(checkedId == R.id.woman)
             {
@@ -23,57 +25,36 @@ class CharicteristicActivity : AppCompatActivity() {
                 checked_sex = "man"
             }
         }
-        val docRef = FirebaseUtils.db.collection("users").document(FirebaseUtils.getUid())
-
-        var changed_sex: String = "null"
 
 
-        if(docRef != null) {
-            docRef.get().addOnSuccessListener { documentSnapshot ->
-                changed_sex = documentSnapshot.get("sex").toString()
-                name_area.setText(documentSnapshot.get("name").toString())
-                age_area.setText(documentSnapshot.get("age").toString())
-                grade_area.setText(documentSnapshot.get("grade").toString())
-                major_area.setText(documentSnapshot.get("major").toString())
-                country_area.setText(documentSnapshot.get("country").toString())
-                nickname_area.setText(documentSnapshot.get("nickname").toString())
-                university_area.setText(documentSnapshot.get("university").toString())
-                if(documentSnapshot.get("sex").toString() == "man")
-                {
-                    man.isChecked = true
-                    woman.isChecked = false
-                }
-                else{
-                    woman.isChecked = true
-                    man.isChecked = false
-                }
-            }
-        }
 
         save_button.setOnClickListener {
-
-            if(FirebaseUtils.db.collection(university_area.text.toString()).document(changed_sex).collection("users")
-                    .document(FirebaseUtils.getUid()) != null) {
-                FirebaseUtils.db.collection(university_area.text.toString()).document(changed_sex)
-                    .collection("users")
+            //기존 데이터 삭제
+            Ref.get().addOnSuccessListener {
+                FirebaseUtils.db.collection(it.get("university").toString())
+                    .document(it.get("sex").toString()).collection("users")
                     .document(FirebaseUtils.getUid()).delete()
             }
 
-            val user = hashMapOf(
+            //새로운 데이터 추가
+            val user_info = hashMapOf(
                 "nickname" to nickname_area.text.toString(),
                 "name" to name_area.text.toString(),
                 "age" to age_area.text.toString(),
                 "grade" to grade_area.text.toString(),
                 "major" to major_area.text.toString(),
-                "country" to country_area.text.toString(),
+                "country" to country_area.text.toString()
+            )
+
+            val user = hashMapOf(
                 "university" to university_area.text.toString(),
                 "sex" to checked_sex
             )
 
-            FirebaseUtils.db.collection("users").document(FirebaseUtils.getUid()).set(user)
+            Ref.set(user)
 
             FirebaseUtils.db.collection(university_area.text.toString()).document(checked_sex).collection("users")
-                .document(FirebaseUtils.getUid()).set(user)
+                .document(FirebaseUtils.getUid()).set(user_info)
                 .addOnSuccessListener {
                     Log.e("CharicteristicActivity", "성공")
                     val intent = Intent(this, MainActivity::class.java)

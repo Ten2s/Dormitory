@@ -37,6 +37,22 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_page)
 
+        login_button.setOnClickListener {
+            FirebaseUtils.auth.signInWithEmailAndPassword(login_email_area.text.toString(), login_password_area.text.toString())
+                .addOnCompleteListener(this){task ->
+                if(task.isSuccessful){
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }else {
+                    Toast.makeText(this, "fail", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+        //회원 가입
+        join_in.setOnClickListener {
+            val intent = Intent(this, JoininActivity::class.java)
+            startActivity(intent)
+        }
         //구글로그인
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
