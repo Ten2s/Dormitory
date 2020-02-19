@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dormitory_friend.FirebaseUtils
 import com.example.dormitory_friend.R
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -36,7 +37,7 @@ class ChatRoomAdapter (val context : Context, val chatList : MutableList<chatDat
 
     override fun getItemViewType(position: Int): Int {
         var item = 0
-        if(dataList[position]?.getName().equals("김경민"))
+        if(dataList[position]?.useruid.equals(FirebaseUtils.getUid()))
         {
             item = 1
         }
@@ -53,14 +54,14 @@ class ChatRoomAdapter (val context : Context, val chatList : MutableList<chatDat
         val formatter = DateTimeFormatter.ofPattern("hh:mm a")
         val formatted = date.format(formatter)
 
-        when (data?.getName()) {
-            "김경민" -> {
-                (holder as ChatViewHolder).text_message.setText(data?.getMsg())
+        when (data?.useruid) {
+            FirebaseUtils.getUid() -> {
+                (holder as ChatViewHolder).text_message.setText(data?.message)
                 holder.time_txt.setText("$formatted")
             }
 
-            "채현욱" -> {
-                (holder as ChatViewHolder_other).text_message.setText(data?.getMsg())
+            else -> {
+                (holder as ChatViewHolder_other).text_message.setText(data?.message)
                 holder.time_txt.setText("$formatted")
             }
         }

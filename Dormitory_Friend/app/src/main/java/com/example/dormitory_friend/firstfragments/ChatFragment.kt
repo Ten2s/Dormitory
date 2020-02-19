@@ -25,10 +25,6 @@ class ChatFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_chat, container, false)
 
-        view.test.setOnClickListener{
-            val intent = Intent(requireContext(), ChatRoomActivity::class.java)
-            startActivity(intent)
-        }
 
 
         return view

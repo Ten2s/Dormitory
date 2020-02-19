@@ -12,7 +12,7 @@ class FirebaseUtils
 
         var auth = FirebaseAuth.getInstance()
         val db = FirebaseFirestore.getInstance()
-        val realtime = FirebaseDatabase.getInstance().getReference("chatRoom")
+        val realtime = FirebaseDatabase.getInstance().reference.child("chatRoom")
 
         fun getUid() : String
         {

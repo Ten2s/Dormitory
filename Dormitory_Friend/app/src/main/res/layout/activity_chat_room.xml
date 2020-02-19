@@ -22,10 +22,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/content_chat"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="match_parent"
         android:paddingBottom="100dp"
-        app:layout_constraintTop_toBottomOf="@+id/username"/>
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="70dp"/>
     <View
         android:id="@+id/line"
         android:layout_width="match_parent"

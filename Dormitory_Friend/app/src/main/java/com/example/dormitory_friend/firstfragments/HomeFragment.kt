@@ -31,6 +31,7 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val Ref = FirebaseUtils.db.collection("users").document(FirebaseUtils.getUid())
+        val intent = Intent(requireContext(), ChatRoomActivity::class.java)
         lateinit var adapter : BaseAdapter
         lateinit var dataArray : QuerySnapshot
 
@@ -52,7 +53,6 @@ class HomeFragment : Fragment() {
             dialog.setContentView(R.layout.forchatbottomdialog)
             dialog.show()
             dialog.startchat.setOnClickListener {
-                val intent = Intent(requireContext(), ChatRoomActivity::class.java)
                 intent.putExtra("username", dataArray.documents.get(position).get("nickname").toString())
                 intent.putExtra("uid", dataArray.documents.get(position).get("uid").toString())
                 startActivity(intent)
