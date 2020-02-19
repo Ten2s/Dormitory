@@ -6,11 +6,18 @@
     tools:context=".firstfragments.noticeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/homeFrag"
-        android:text="Notice Fragment"
+    <Button
+        android:id="@+id/button_register_notice"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"/>
+        android:layout_height="70dp"
+        android:text="글을 남겨 주세요"/>
+
+    <ListView
+        android:id="@+id/list_notice"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="80dp"/>
+
+
 
 </FrameLayout>

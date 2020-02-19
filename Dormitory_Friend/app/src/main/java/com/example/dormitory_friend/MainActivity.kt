@@ -24,17 +24,33 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_area, HomeFragment()).commit()
-        home.setAlpha(1.0f)
-        notice.setAlpha(0.5f)
-        chat.setAlpha(0.5f)
-        my_page.setAlpha(0.5f)
+        var getIntent : String = ""
+
+        if(intent.getStringExtra("name") != null){
+            getIntent = intent.getStringExtra("name")
+        }
+
+        if(getIntent != "" && getIntent.equals("notice"))
+        {
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_area, NoticeFragment()).commit()
+            home.setAlpha(0.5f)
+            notice.setAlpha(1.0f)
+            chat.setAlpha(0.5f)
+            my_page.setAlpha(0.5f)
+            main_title.text = "게시판"
+        }
+        else{
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_area, HomeFragment()).commit()
+            home.setAlpha(1.0f)
+            notice.setAlpha(0.5f)
+            chat.setAlpha(0.5f)
+            my_page.setAlpha(0.5f)
+        }
 
         if(FirebaseUtils.auth.currentUser == null) {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-
 
 
         home.setOnClickListener {
