@@ -26,6 +26,28 @@ class CharicteristicActivity : AppCompatActivity() {
             }
         }
 
+        Ref.get().addOnSuccessListener {
+            if(it != null){
+                university_area.setText(it.get("university").toString())
+                if(it.get("sex").toString().equals("man")){
+                    man.isChecked = true
+                }
+                else{
+                    woman.isChecked = true
+                }
+                FirebaseUtils.db.collection(it.get("university").toString())
+                    .document(it.get("sex").toString()).collection("users")
+                    .document(FirebaseUtils.getUid()).get().addOnSuccessListener { document ->
+                        major_area.setText(document.get("major").toString())
+                        grade_area.setText(document.get("grade").toString())
+                        nickname_area.setText(document.get("nickname").toString())
+                        name_area.setText(document.get("name").toString())
+                        age_area.setText(document.get("age").toString())
+                        country_area.setText(document.get("country").toString())
+                    }
+            }
+        }
+
 
 
         save_button.setOnClickListener {
@@ -43,7 +65,8 @@ class CharicteristicActivity : AppCompatActivity() {
                 "age" to age_area.text.toString(),
                 "grade" to grade_area.text.toString(),
                 "major" to major_area.text.toString(),
-                "country" to country_area.text.toString()
+                "country" to country_area.text.toString(),
+                "uid" to FirebaseUtils.getUid()
             )
 
             val user = hashMapOf(
@@ -53,14 +76,17 @@ class CharicteristicActivity : AppCompatActivity() {
 
             Ref.set(user)
 
-            FirebaseUtils.db.collection(university_area.text.toString()).document(checked_sex).collection("users")
-                .document(FirebaseUtils.getUid()).set(user_info)
-                .addOnSuccessListener {
-                    Log.e("CharicteristicActivity", "성공")
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
-                .addOnFailureListener { Log.e("CharicteristicActivity", "실패") }
+            Ref.get().addOnSuccessListener {
+                FirebaseUtils.db.collection(it.get("university").toString()).document(it.get("sex").toString()).collection("users")
+                    .document(FirebaseUtils.getUid()).set(user_info)
+                    .addOnSuccessListener {
+                        Log.e("CharicteristicActivity", "성공")
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                    .addOnFailureListener { Log.e("CharicteristicActivity", "실패") }
+            }
+
         }
     }
 }
