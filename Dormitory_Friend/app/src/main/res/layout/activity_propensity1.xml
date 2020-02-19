@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PropensityActivity">
+
+    <TextView
+        android:id="@+id/roommate"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="  나의 성향"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:background="#ffAE90"
+        android:textSize="27dp"
+        android:gravity="left|center"
+        android:layout_height="60dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/propensity_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/roommate">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/propensity_test1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/propensity_area">
+
+            <TextView
+                android:id="@+id/title_propensity_test1"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1.취침시간"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:textSize="22dp"/>
+            <RadioGroup
+                android:id="@+id/choice_propensity_test1"
+                app:layout_constraintTop_toBottomOf="@+id/title_propensity_test1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp">
+                <RadioButton
+                    android:id="@+id/button1_propensity_test1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="22:00 ~ 00:00"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/button2_propensity_test1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:00 ~ 02:00"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/button3_propensity_test1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="02:00 이후"
+                    android:layout_weight="1"/>
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/propensity_test2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf ="@+id/propensity_test1">
+
+            <TextView
+                android:id="@+id/title_propensity_test2"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2.기상시간"
+                android:layout_marginTop="40dp"
+                android:textStyle="bold"
+                android:textSize="22dp"/>
+            <RadioGroup
+                android:id="@+id/choice_propensity_test2"
+                app:layout_constraintTop_toBottomOf="@+id/title_propensity_test2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="5dp">
+                <RadioButton
+                    android:id="@+id/button1_propensity_test2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="08:00 이전"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/button2_propensity_test2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="08:00 ~ 10:00"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/button3_propensity_test2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10:00 ~ 12:00"
+                    android:layout_weight="1"/>
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/propensity_test3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf ="@+id/propensity_test2">
+
+            <TextView
+                android:id="@+id/title_propensity_test3"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3.흡연유무"
+                android:layout_marginTop="40dp"
+                android:textStyle="bold"
+                android:textSize="22dp"/>
+            <RadioGroup
+                android:id="@+id/choice_propensity_test3"
+                app:layout_constraintTop_toBottomOf="@+id/title_propensity_test3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="5dp">
+                <RadioButton
+                    android:id="@+id/button1_propensity_test3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="예"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/button2_propensity_test3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="아니오"
+                    android:layout_weight="1"/>
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/propensity_test4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf ="@+id/propensity_test3">
+
+            <TextView
+                android:id="@+id/title_propensity_test4"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4.청소 및 정리정돈"
+                android:layout_marginTop="40dp"
+                android:textStyle="bold"
+                android:textSize="22dp"/>
+            <RadioGroup
+                android:id="@+id/choice_propensity_test4"
+                app:layout_constraintTop_toBottomOf="@+id/title_propensity_test4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="5dp">
+                <RadioButton
+                    android:id="@+id/button1_propensity_test4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="중요"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/button2_propensity_test4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="상관없음"
+                    android:layout_weight="1"/>
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/propensity_test5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf ="@+id/propensity_test4">
+
+            <TextView
+                android:id="@+id/title_propensity_test5"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5.잠꼬대 및 코골이 여부"
+                android:layout_marginTop="40dp"
+                android:textStyle="bold"
+                android:textSize="22dp"/>
+            <RadioGroup
+                android:id="@+id/choice_propensity_test5"
+                app:layout_constraintTop_toBottomOf="@+id/title_propensity_test5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="5dp">
+                <RadioButton
+                    android:id="@+id/button1_propensity_test5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="예"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/button2_propensity_test5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="아니오"
+                    android:layout_weight="1"/>
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/propensity_test6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf ="@+id/propensity_test5">
+
+            <TextView
+                android:id="@+id/title_propensity_test6"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="6.화장실 이용시간(세면포함)"
+                android:layout_marginTop="40dp"
+                android:textStyle="bold"
+                android:textSize="22dp"/>
+            <RadioGroup
+                android:id="@+id/choice_propensity_test6"
+                app:layout_constraintTop_toBottomOf="@+id/title_propensity_test6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="5dp">
+                <RadioButton
+                    android:id="@+id/button1_propensity_test6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="긴편"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/button2_propensity_test6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="짧은편"
+                    android:layout_weight="1"/>
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/propensity_test7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf ="@+id/propensity_test6">
+
+            <TextView
+                android:id="@+id/title_propensity_test7"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="7.방에서 음식 섭취"
+                android:layout_marginTop="40dp"
+                android:textStyle="bold"
+                android:textSize="22dp"/>
+            <RadioGroup
+                android:id="@+id/choice_propensity_test7"
+                app:layout_constraintTop_toBottomOf="@+id/title_propensity_test7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="5dp">
+                <RadioButton
+                    android:id="@+id/button1_propensity_test7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="자주"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/button2_propensity_test7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="종종"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/button3_propensity_test7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="해당없음"
+                    android:layout_weight="1"/>
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/propensity_test8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf ="@+id/propensity_test7">
+
+            <TextView
+                android:id="@+id/title_propensity_test8"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="8.통화 및 음악재생"
+                android:layout_marginTop="40dp"
+                android:textStyle="bold"
+                android:textSize="22dp"/>
+            <RadioGroup
+                android:id="@+id/choice_propensity_test8"
+                app:layout_constraintTop_toBottomOf="@+id/title_propensity_test8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="5dp">
+                <RadioButton
+                    android:id="@+id/button1_propensity_test8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="자주"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/button2_propensity_test8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="종종"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/button3_propensity_test8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="해당없음"
+                    android:layout_weight="1"/>
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/propensity_test9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf ="@+id/propensity_test8">
+
+            <TextView
+                android:id="@+id/title_propensity_test9"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="9.음주(1주일)"
+                android:layout_marginTop="40dp"
+                android:textStyle="bold"
+                android:textSize="22dp"/>
+            <RadioGroup
+                android:id="@+id/choice_propensity_test9"
+                app:layout_constraintTop_toBottomOf="@+id/title_propensity_test9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="5dp">
+                <RadioButton
+                    android:id="@+id/button1_propensity_test9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="5회 이상"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/button2_propensity_test9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 ~ 4회"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/button3_propensity_test9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1 ~ 2 회"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/button4_propensity_test9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0회"
+                    android:layout_weight="1"/>
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/nextpage_button"
+                android:layout_height="60dp"
+                android:text="다음 페이지로"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/choice_propensity_test9"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="110dp"
+                android:layout_marginRight="110dp"
+                android:background="#ffAE90"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
