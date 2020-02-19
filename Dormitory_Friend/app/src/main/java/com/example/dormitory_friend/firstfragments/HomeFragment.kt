@@ -42,12 +42,7 @@ class HomeFragment : Fragment() {
                 .addOnSuccessListener {
                         querySnapshot ->
                     dataArray = querySnapshot
-                    adapter =
-                        FirstFragmentAdapter(
-                            requireContext(),
-                            dataArray
-                        )
-
+                    adapter = FirstFragmentAdapter(requireContext(), dataArray)
                     view.list_FirstFragment.adapter = adapter
                 }
         }

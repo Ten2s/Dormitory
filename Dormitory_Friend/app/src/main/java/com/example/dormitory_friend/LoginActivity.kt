@@ -59,11 +59,8 @@ class LoginActivity : AppCompatActivity() {
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
-
-
         google_login.setOnClickListener {
             signIn()
-
         }
 
         //카카오 로그인

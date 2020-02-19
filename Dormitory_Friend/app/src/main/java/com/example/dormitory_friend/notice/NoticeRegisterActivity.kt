@@ -25,7 +25,7 @@ class NoticeRegisterActivity : AppCompatActivity() {
                         var data = hashMapOf(
                             "title" to notice_subject.text.toString(),
                             "content" to notice_content.text.toString(),
-                            "nickname" to document.get("nickname")
+                            "nickname" to document.get("nickname").toString()
                         )
 
                         FirebaseUtils.db.collection("notice").add(data).addOnSuccessListener {

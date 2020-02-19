@@ -1,6 +1,6 @@
 package com.example.dormitory_friend
-
 import com.kakao.auth.*
+
 
 class KakaoSDKAdapter : KakaoAdapter() {
     override fun getSessionConfig(): ISessionConfig {

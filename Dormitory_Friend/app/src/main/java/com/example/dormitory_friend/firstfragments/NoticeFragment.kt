@@ -8,11 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.dormitory_friend.FirebaseUtils
-import com.example.dormitory_friend.LoginActivity
 
 import com.example.dormitory_friend.R
 import com.example.dormitory_friend.notice.NoticeRegisterActivity
-import com.example.dormitory_friend.notice.adapters.NoticeFragmentAdapter
+import com.example.dormitory_friend.firstfragments.adapters.NoticeFragmentAdapter
 import kotlinx.android.synthetic.main.fragment_notice.view.*
 
 /**
@@ -30,7 +29,11 @@ class NoticeFragment : Fragment() {
 
         FirebaseUtils.db.collection("notice").get().addOnSuccessListener {
             val querysnapshot = it
-            val adapter = NoticeFragmentAdapter(requireContext(), querysnapshot)
+            val adapter =
+                NoticeFragmentAdapter(
+                    requireContext(),
+                    querysnapshot
+                )
             view.list_notice.adapter = adapter
         }
         view.button_register_notice.setOnClickListener{

@@ -1,24 +1,28 @@
 package com.example.dormitory_friend.chat
 
-class chatData(val username : String, val message : String, val timeStamp : String) {
-    var userName: String = username
-    var userMessage: String = message
-    var time : String = timeStamp
+class chatData() {
+    lateinit var userName: String
+    lateinit var uid : String
+    lateinit var userMessage: String
 
     fun getName() : String
     {
         return userName
     }
-
-    fun getTimestamp() : String
+    fun getUId() : String
     {
-        return this.time
+        return uid
     }
+
     fun getMsg() : String
     {
         return userMessage
     }
 
+    fun setUId(uid : String)
+    {
+        this.uid = uid
+    }
     fun setMsg(message : String)
     {
         this.userMessage = message
@@ -29,9 +33,5 @@ class chatData(val username : String, val message : String, val timeStamp : Stri
         this.userName = name
     }
 
-    fun setTimeStamp(time : String)
-    {
-        this.time = time
-    }
 
 }

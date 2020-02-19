@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_charicteristic.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class CharicteristicActivity : AppCompatActivity() {
 
@@ -47,46 +49,42 @@ class CharicteristicActivity : AppCompatActivity() {
                     }
             }
         }
-
-
-
         save_button.setOnClickListener {
             //기존 데이터 삭제
             Ref.get().addOnSuccessListener {
                 FirebaseUtils.db.collection(it.get("university").toString())
                     .document(it.get("sex").toString()).collection("users")
                     .document(FirebaseUtils.getUid()).delete()
+
+                //새로운 데이터 추가
+                val user_info = hashMapOf(
+                    "nickname" to nickname_area.text.toString(),
+                    "name" to name_area.text.toString(),
+                    "age" to age_area.text.toString(),
+                    "grade" to grade_area.text.toString(),
+                    "major" to major_area.text.toString(),
+                    "country" to country_area.text.toString(),
+                    "uid" to FirebaseUtils.getUid()
+                )
+
+                val user = hashMapOf(
+                    "university" to university_area.text.toString(),
+                    "sex" to checked_sex
+                )
+
+                Ref.set(user)
+
+                Ref.get().addOnSuccessListener {
+                    FirebaseUtils.db.collection(it.get("university").toString()).document(it.get("sex").toString()).collection("users")
+                        .document(FirebaseUtils.getUid()).set(user_info)
+                        .addOnSuccessListener {
+                            Log.e("CharicteristicActivity", "성공")
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                        }
+                        .addOnFailureListener { Log.e("CharicteristicActivity", "실패") }
+                }
             }
-
-            //새로운 데이터 추가
-            val user_info = hashMapOf(
-                "nickname" to nickname_area.text.toString(),
-                "name" to name_area.text.toString(),
-                "age" to age_area.text.toString(),
-                "grade" to grade_area.text.toString(),
-                "major" to major_area.text.toString(),
-                "country" to country_area.text.toString(),
-                "uid" to FirebaseUtils.getUid()
-            )
-
-            val user = hashMapOf(
-                "university" to university_area.text.toString(),
-                "sex" to checked_sex
-            )
-
-            Ref.set(user)
-
-            Ref.get().addOnSuccessListener {
-                FirebaseUtils.db.collection(it.get("university").toString()).document(it.get("sex").toString()).collection("users")
-                    .document(FirebaseUtils.getUid()).set(user_info)
-                    .addOnSuccessListener {
-                        Log.e("CharicteristicActivity", "성공")
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                    }
-                    .addOnFailureListener { Log.e("CharicteristicActivity", "실패") }
-            }
-
         }
     }
 }
