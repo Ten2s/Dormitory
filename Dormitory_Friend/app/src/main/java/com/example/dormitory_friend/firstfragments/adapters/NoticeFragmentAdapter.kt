@@ -6,17 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.dormitory_friend.R
+import com.example.dormitory_friend.firstfragments.NoticeListModel
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.listview_noticefragment.view.*
 import java.time.LocalDate
 
-class NoticeFragmentAdapter(val context: Context, val querysnapshot : QuerySnapshot): BaseAdapter() {
+class NoticeFragmentAdapter(val context: Context, val dataArray : ArrayList<NoticeListModel>): BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view = LayoutInflater.from(context).inflate(R.layout.listview_noticefragment, null)
 
         val now = LocalDate.now()
-        view.lv_title.setText(querysnapshot.documents.get(position).get("title").toString())
-        view.lv_id.setText(querysnapshot.documents.get(position).get("nickname").toString())
+        view.lv_title.setText(dataArray[position].title)
+        view.lv_id.setText(dataArray[position].nickname)
         view.lv_time.setText("$now")
         return view
     }
@@ -30,7 +31,7 @@ class NoticeFragmentAdapter(val context: Context, val querysnapshot : QuerySnaps
     }
 
     override fun getCount(): Int {
-        return querysnapshot.size()
+        return dataArray.size
     }
 
 }

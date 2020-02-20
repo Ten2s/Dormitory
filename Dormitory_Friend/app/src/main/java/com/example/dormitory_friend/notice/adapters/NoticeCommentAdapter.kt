@@ -1,4 +1,4 @@
-package com.example.dormitory_friend.notice
+package com.example.dormitory_friend.notice.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,17 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.dormitory_friend.R
+import com.example.dormitory_friend.notice.CommentModel
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.listview_noticecomment.view.*
 
-class NoticeCommentAdapter(val context: Context,val querySnapshot: QuerySnapshot):BaseAdapter() {
+class NoticeCommentAdapter(val context: Context,val commentArray: ArrayList<CommentModel>):BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
 
         val view : View = LayoutInflater.from(context).inflate(R.layout.listview_noticecomment,null)
 
-        view.comment_content.setText(querySnapshot.documents.get(position).get("comment").toString())
-        view.comment_nickname.setText(querySnapshot.documents.get(position).get("nickname").toString())
+        view.comment_content.setText(commentArray[position].comment)
+        view.comment_nickname.setText(commentArray[position].nickname)
 
 
         return view
@@ -32,7 +33,7 @@ class NoticeCommentAdapter(val context: Context,val querySnapshot: QuerySnapshot
     }
 
     override fun getCount(): Int {
-        return querySnapshot.size()
+        return commentArray.size
     }
 
 }

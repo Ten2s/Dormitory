@@ -9,7 +9,7 @@ import com.example.dormitory_friend.R
 import com.example.dormitory_friend.firstfragments.UserModel
 import kotlinx.android.synthetic.main.listview_firstfragment.view.*
 
-class FirstFragmentAdapter (var context : Context, var result : ArrayList<UserModel>) : BaseAdapter(){
+class HomeFragmentAdapter (var context : Context, var result : ArrayList<UserModel>) : BaseAdapter(){
 
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View{
 

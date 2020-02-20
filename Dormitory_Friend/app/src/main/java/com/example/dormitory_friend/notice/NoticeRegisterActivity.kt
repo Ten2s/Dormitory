@@ -17,17 +17,17 @@ class NoticeRegisterActivity : AppCompatActivity() {
 
         register_button.setOnClickListener{
 
-            FirebaseUtils.db.collection("users").document(FirebaseUtils.getUid()).get().addOnSuccessListener {
-                FirebaseUtils.db.collection(it.get("university").toString()).document(it.get("sex").toString())
-                    .collection("users").document(FirebaseUtils.getUid()).get()
-                    .addOnSuccessListener {
-                        document ->
+            FirebaseUtils.db.collection("users").document(FirebaseUtils.getUid())
+                .addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
+                FirebaseUtils.db.collection(documentSnapshot?.get("university").toString())
+                    .document(documentSnapshot?.get("sex").toString())
+                    .collection("users").document(FirebaseUtils.getUid())
+                    .addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
                         var data = hashMapOf(
                             "title" to notice_subject.text.toString(),
                             "content" to notice_content.text.toString(),
-                            "nickname" to document.get("nickname").toString()
+                            "nickname" to documentSnapshot?.get("nickname").toString()
                         )
-
                         FirebaseUtils.db.collection("notice").add(data).addOnSuccessListener {
                             val intent = Intent(this, MainActivity::class.java)
                             intent.putExtra("name", "notice")
@@ -35,8 +35,6 @@ class NoticeRegisterActivity : AppCompatActivity() {
                         }
                     }
             }
-
         }
-
     }
 }

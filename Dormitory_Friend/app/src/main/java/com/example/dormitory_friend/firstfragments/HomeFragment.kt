@@ -13,9 +13,8 @@ import android.widget.BaseAdapter
 import com.example.dormitory_friend.FirebaseUtils
 import com.example.dormitory_friend.R
 import com.example.dormitory_friend.chat.ChatRoomActivity
-import com.example.dormitory_friend.firstfragments.adapters.FirstFragmentAdapter
+import com.example.dormitory_friend.firstfragments.adapters.HomeFragmentAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.forchatbottomdialog.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
@@ -62,7 +61,7 @@ class HomeFragment : Fragment() {
                 }
         }
 
-        adapter = FirstFragmentAdapter(requireContext(), dataArray)
+        adapter = HomeFragmentAdapter(requireContext(), dataArray)
         view.list_FirstFragment.adapter = adapter
 
         view.list_FirstFragment.setOnItemClickListener { parent, view, position, id ->
