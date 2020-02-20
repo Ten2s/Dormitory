@@ -9,7 +9,6 @@ import com.google.firebase.database.FirebaseDatabase
 class FirebaseUtils
 {
     companion object {
-
         var auth = FirebaseAuth.getInstance()
         val db = FirebaseFirestore.getInstance()
         val realtime = FirebaseDatabase.getInstance().reference.child("chatRoom")
