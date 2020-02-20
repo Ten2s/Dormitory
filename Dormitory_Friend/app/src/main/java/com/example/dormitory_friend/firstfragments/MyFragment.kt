@@ -31,21 +31,17 @@ class MyFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_my, container, false)
 
         FirebaseUtils.db.collection("users").document(FirebaseUtils.getUid())
-            .get().addOnSuccessListener {
-                documentSnapshot ->
-                FirebaseUtils.db.collection((documentSnapshot.get("university").toString())).document(documentSnapshot.get("sex").toString())
+            .addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
+                FirebaseUtils.db.collection((documentSnapshot?.get("university").toString())).document(documentSnapshot?.get("sex").toString())
                     .collection("users").document(FirebaseUtils.getUid())
-                    .get().addOnSuccessListener {
-                            documentSnapshot ->
-                        profile_age.setText("나이 : " + documentSnapshot.get("age").toString())
-                        profile_grade.setText("학년 : " + documentSnapshot.get("grade").toString())
-                        profile_country.setText(documentSnapshot.get("country").toString())
-                        profile_nickname.setText(documentSnapshot.get("nickname").toString())
-                        profile_major.setText(documentSnapshot.get("major").toString())
-
+                    .addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
+                        profile_age.setText("나이 : " + documentSnapshot?.get("age").toString())
+                        profile_grade.setText("학년 : " + documentSnapshot?.get("grade").toString())
+                        profile_country.setText(documentSnapshot?.get("country").toString())
+                        profile_nickname.setText(documentSnapshot?.get("nickname").toString())
+                        profile_major.setText(documentSnapshot?.get("major").toString())
                     }
             }
-
 
         view.modify_txt.setOnClickListener {
             val intent = Intent(context, CharicteristicActivity::class.java)

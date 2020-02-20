@@ -6,22 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.dormitory_friend.R
-import com.google.firebase.firestore.QuerySnapshot
+import com.example.dormitory_friend.firstfragments.UserModel
 import kotlinx.android.synthetic.main.listview_firstfragment.view.*
 
-class FirstFragmentAdapter (var context : Context, var result : QuerySnapshot) : BaseAdapter(){
+class FirstFragmentAdapter (var context : Context, var result : ArrayList<UserModel>) : BaseAdapter(){
 
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View{
 
         val view = LayoutInflater.from(context).inflate(R.layout.listview_firstfragment, null)
 
-        val document = result.documents.get(p0)
+        val info = result[p0]
 
-        view.lv_nickname.setText(document.get("nickname").toString())
-        view.lv_age.setText("나이 : " + document.get("age").toString())
-        view.lv_grade.setText("학년 : " + document.get("grade").toString())
-        view.lv_country.setText(document.get("country").toString())
-        view.lv_major.setText(document.get("major").toString())
+        view.lv_nickname.setText(info.nickname)
+        view.lv_age.setText("나이 : " + info.age)
+        view.lv_grade.setText("학년 : " + info.grade)
+        view.lv_country.setText(info.country)
+        view.lv_major.setText(info.major)
 
         return view
     }
@@ -36,6 +36,6 @@ class FirstFragmentAdapter (var context : Context, var result : QuerySnapshot) :
 
     override fun getCount(): Int {
 
-        return result.size()
+        return result.size
     }
 }
