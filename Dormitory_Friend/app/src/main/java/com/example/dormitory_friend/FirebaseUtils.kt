@@ -11,7 +11,6 @@ import com.google.firebase.firestore.QuerySnapshot
 class FirebaseUtils
 {
     companion object {
-
         var auth = FirebaseAuth.getInstance()
         val db = FirebaseFirestore.getInstance()
         lateinit var querySnapshot : QuerySnapshot
