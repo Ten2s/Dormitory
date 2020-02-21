@@ -7,11 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.dormitory_friend.CharicteristicActivity
-import com.example.dormitory_friend.FirebaseUtils
-import com.example.dormitory_friend.MainActivity
+import com.example.dormitory_friend.*
 
-import com.example.dormitory_friend.R
 import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.android.synthetic.main.activity_charicteristic.view.*
 import kotlinx.android.synthetic.main.fragment_my.*
@@ -51,6 +48,12 @@ class MyFragment : Fragment() {
         view.logout_txt.setOnClickListener {
             FirebaseUtils.auth.signOut()
             val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        //고객센터
+        view.serveice_txt.setOnClickListener {
+            val intent = Intent(context, CustomerServiceActivity::class.java)
             startActivity(intent)
         }
 

@@ -28,6 +28,7 @@ class NoticeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val view : View = inflater.inflate(R.layout.fragment_notice, container, false)
         val adapter = NoticeFragmentAdapter(requireContext(), noticeArray)
 
@@ -43,14 +44,17 @@ class NoticeFragment : Fragment() {
 
             for(document in querySnapshot!!)
             {
+
                 val data = NoticeListModel(document.get("content").toString(),
                     document.get("title").toString(),
                     document.get("nickname").toString())
 
                 noticeArray.add(data)
             }
+
             //리스트 변화감지
             adapter.notifyDataSetChanged()
+
         }
         //어댑터 설정
         view.list_notice.adapter = adapter
@@ -74,10 +78,16 @@ class NoticeFragment : Fragment() {
                     intent.putExtra("nickname", querySnapshot.documents.get(position).get("nickname").toString())
                     intent.putExtra("title",querySnapshot.documents.get(position).get("title").toString())
                     intent.putExtra("position", position)
+                    
                     startActivity(intent)
 
                 }
         }
+
+
+
+
+
 
         return view
     }
