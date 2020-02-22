@@ -78,11 +78,9 @@ class CharicteristicActivity : AppCompatActivity() {
                     FirebaseUtils.db.collection(it.get("university").toString()).document(it.get("sex").toString()).collection("users")
                         .document(FirebaseUtils.getUid()).set(user_info)
                         .addOnSuccessListener {
-                            Log.e("CharicteristicActivity", "성공")
-                            val intent = Intent(this, MainActivity::class.java)
+                            val intent = Intent(this, PropensityActivity1::class.java)
                             startActivity(intent)
                         }
-                        .addOnFailureListener { Log.e("CharicteristicActivity", "실패") }
                 }
             }
         }

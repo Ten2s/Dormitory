@@ -9,6 +9,7 @@
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="#FFF"
         android:layout_height="match_parent">
 
 
@@ -104,9 +105,18 @@
             app:layout_constraintLeft_toRightOf="@id/modify_img"
             android:layout_marginTop="15dp"
             android:gravity="center_vertical"
-            android:text="정보 수정                                          >"
+            android:text="정보 수정"
             android:textSize="20dp"
             android:layout_marginLeft="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            app:layout_constraintRight_toRightOf="@+id/modify_txt"
+            app:layout_constraintTop_toTopOf="@+id/modify_txt"
+            android:gravity="center_vertical"
+            android:text = ">"
+            android:textSize="20dp"
+            android:layout_marginRight="20dp"/>
 
         <View
             android:id="@+id/second_line"
@@ -134,10 +144,18 @@
             app:layout_constraintLeft_toRightOf="@id/char_img"
             android:layout_marginTop="15dp"
             android:gravity="center_vertical"
-            android:text="성향 수정                                          >"
+            android:text="성향 수정"
             android:textSize="20dp"
             android:layout_marginLeft="20dp"/>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            app:layout_constraintRight_toRightOf="@+id/char_txt"
+            app:layout_constraintTop_toTopOf="@+id/char_txt"
+            android:gravity="center_vertical"
+            android:text = ">"
+            android:textSize="20dp"
+            android:layout_marginRight="20dp"/>
         <View
             android:id="@+id/third_line"
             android:layout_width="match_parent"
@@ -163,9 +181,19 @@
             app:layout_constraintLeft_toRightOf="@id/service_img"
             android:layout_marginTop="15dp"
             android:gravity="center_vertical"
-            android:text="고객 센터                                          >"
+            android:text="고객 센터"
             android:textSize="20dp"
             android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            app:layout_constraintRight_toRightOf="@+id/serveice_txt"
+            app:layout_constraintTop_toTopOf="@+id/serveice_txt"
+            android:gravity="center_vertical"
+            android:text = ">"
+            android:textSize="20dp"
+            android:layout_marginRight="20dp"/>
 
         <View
             android:id="@+id/fourth_line"
@@ -193,9 +221,19 @@
           app:layout_constraintLeft_toRightOf="@id/service_img"
           android:layout_marginTop="15dp"
           android:gravity="center_vertical"
-          android:text="로그아웃                                          >"
+          android:text="로그아웃"
           android:textSize="20dp"
           android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            app:layout_constraintRight_toRightOf="@+id/logout_txt"
+            app:layout_constraintTop_toTopOf="@+id/logout_txt"
+            android:gravity="center_vertical"
+            android:text = ">"
+            android:textSize="20dp"
+            android:layout_marginRight="20dp"/>
 
       <View
           android:id="@+id/fifth_line"
