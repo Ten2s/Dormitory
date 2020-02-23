@@ -10,6 +10,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.kakao.auth.*
 import com.kakao.util.exception.KakaoException
@@ -119,7 +120,11 @@ class LoginActivity : AppCompatActivity() {
                     val intent = Intent(this, CharicteristicActivity::class.java)
                     startActivity(intent)
                 } else {
-                    Log.w(TAG, "signInWithCredential:failure", task.exception)
+                    try{
+                    }catch(e : FirebaseAuthUserCollisionException){
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }
                 }
 
             }
