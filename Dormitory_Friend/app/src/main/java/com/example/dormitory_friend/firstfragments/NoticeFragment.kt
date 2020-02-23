@@ -15,6 +15,7 @@ import com.example.dormitory_friend.R
 import com.example.dormitory_friend.notice.NoticeRegisterActivity
 import com.example.dormitory_friend.firstfragments.adapters.NoticeFragmentAdapter
 import com.example.dormitory_friend.notice.NoticeDetailActivity
+import kotlinx.android.synthetic.main.activity_notice_detail.*
 import kotlinx.android.synthetic.main.fragment_notice.view.*
 import kotlinx.android.synthetic.main.undertab.*
 
@@ -40,29 +41,27 @@ class NoticeFragment : Fragment() {
                 Log.w(ContentValues.TAG, "Listen failed.", firebaseFirestoreException)
                 return@addSnapshotListener
             }
-
             noticeArray.clear()
-
-            for(document in querySnapshot!!)
+            for((index, document) in querySnapshot!!.withIndex())
             {
+                val data = NoticeListModel(document.get("content").toString(),
+                    document.get("title").toString(),
+                    document.get("nickname").toString(),
+                    "0")
                 document.reference.collection("comment").addSnapshotListener {
-                        querySnapshot, firebaseFirestoreException ->
-
+                        snapshot, firebaseFirestoreException ->
                     if(firebaseFirestoreException != null){
                         Log.w(ContentValues.TAG, "Listen failed.", firebaseFirestoreException)
                         return@addSnapshotListener
                     }
-                    val commentcount = querySnapshot!!.size().toString()
-                    val data = NoticeListModel(document.get("content").toString(),
-                        document.get("title").toString(),
-                        document.get("nickname").toString(),
-                        commentcount)
-                    noticeArray.add(data)
-                    //리스트 변화감지
+                    val commentcount = snapshot!!.size().toString()
+                    noticeArray[index].commentCnt = commentcount
                     adapter.notifyDataSetChanged()
                 }
-            }
 
+                noticeArray.add(data)
+                adapter.notifyDataSetChanged()
+            }
         }
         //어댑터 설정
         view.list_notice.adapter = adapter

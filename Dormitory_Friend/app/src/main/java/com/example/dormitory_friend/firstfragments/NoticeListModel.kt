@@ -4,5 +4,5 @@ data class NoticeListModel (
     val content : String,
     val title : String,
     val nickname : String,
-    val commentCnt : String
+    var commentCnt : String
 )

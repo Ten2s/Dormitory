@@ -21,6 +21,7 @@
             android:id="@+id/chat_list_nickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#F000"
             app:layout_constraintTop_toTopOf="parent"
             android:text="닉네임"
             android:textSize="15dp"
