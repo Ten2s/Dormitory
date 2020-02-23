@@ -64,15 +64,13 @@ class CharicteristicActivity : AppCompatActivity() {
                     "grade" to grade_area.text.toString(),
                     "major" to major_area.text.toString(),
                     "country" to country_area.text.toString(),
-                    "uid" to FirebaseUtils.getUid()
-                )
-
-                val user = hashMapOf(
+                    "uid" to FirebaseUtils.getUid(),
                     "university" to university_area.text.toString(),
                     "sex" to checked_sex
                 )
 
-                Ref.set(user)
+
+                Ref.set(user_info)
 
                 Ref.get().addOnSuccessListener {
                     FirebaseUtils.db.collection(it.get("university").toString()).document(it.get("sex").toString()).collection("users")

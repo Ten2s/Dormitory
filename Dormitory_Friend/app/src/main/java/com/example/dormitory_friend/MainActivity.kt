@@ -20,6 +20,7 @@ import java.security.MessageDigest
 
 class MainActivity : AppCompatActivity() {
 
+    var flag = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -92,6 +93,11 @@ class MainActivity : AppCompatActivity() {
             main_title.text = "설정"
         }
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+        flag = false
     }
 }
 

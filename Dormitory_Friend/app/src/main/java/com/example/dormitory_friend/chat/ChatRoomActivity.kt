@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dormitory_friend.FirebaseUtils
+import com.example.dormitory_friend.MainActivity
 import com.example.dormitory_friend.R
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
