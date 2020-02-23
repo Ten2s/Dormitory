@@ -31,7 +31,7 @@ class CharicteristicActivity : AppCompatActivity() {
 
         //기록이 있는 경우 자동 기록
         Ref.get().addOnSuccessListener {
-            if(it != null){
+            if(it.get("sex") != null){
                 university_area.setText(it.get("university").toString())
                 if(it.get("sex").toString().equals("man")){
                     man.isChecked = true

@@ -32,6 +32,7 @@ class NoticeFragment : Fragment() {
         val view : View = inflater.inflate(R.layout.fragment_notice, container, false)
         val adapter = NoticeFragmentAdapter(requireContext(), noticeArray)
 
+
         //새로운 글 등록될 시 뷰업데이트
         FirebaseUtils.db.collection("notice").addSnapshotListener {
                 querySnapshot, firebaseFirestoreException ->
@@ -44,16 +45,23 @@ class NoticeFragment : Fragment() {
 
             for(document in querySnapshot!!)
             {
+                document.reference.collection("comment").addSnapshotListener {
+                        querySnapshot, firebaseFirestoreException ->
 
-                val data = NoticeListModel(document.get("content").toString(),
-                    document.get("title").toString(),
-                    document.get("nickname").toString())
-
-                noticeArray.add(data)
+                    if(firebaseFirestoreException != null){
+                        Log.w(ContentValues.TAG, "Listen failed.", firebaseFirestoreException)
+                        return@addSnapshotListener
+                    }
+                    val commentcount = querySnapshot!!.size().toString()
+                    val data = NoticeListModel(document.get("content").toString(),
+                        document.get("title").toString(),
+                        document.get("nickname").toString(),
+                        commentcount)
+                    noticeArray.add(data)
+                    //리스트 변화감지
+                    adapter.notifyDataSetChanged()
+                }
             }
-
-            //리스트 변화감지
-            adapter.notifyDataSetChanged()
 
         }
         //어댑터 설정

@@ -13,6 +13,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:text="  추천 친구"
         android:textColor="#DADBE6"
+        android:elevation="20dp"
         android:background="@color/dormitory"
         android:textSize="27dp"
         android:gravity="left|center"
