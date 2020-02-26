@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.dormitory_friend.FirebaseUtils
+import com.example.dormitory_friend.MainActivity
 
 import com.example.dormitory_friend.R
 import com.example.dormitory_friend.notice.NoticeRegisterActivity
@@ -18,6 +19,7 @@ import com.example.dormitory_friend.notice.NoticeDetailActivity
 import kotlinx.android.synthetic.main.activity_notice_detail.*
 import kotlinx.android.synthetic.main.fragment_notice.view.*
 import kotlinx.android.synthetic.main.undertab.*
+import java.time.LocalDate
 
 /**
  * A simple [Fragment] subclass.
@@ -35,7 +37,7 @@ class NoticeFragment : Fragment() {
 
 
         //새로운 글 등록될 시 뷰업데이트
-        FirebaseUtils.db.collection("notice").addSnapshotListener {
+        FirebaseUtils.db.collection("notice").orderBy("time").addSnapshotListener {
                 querySnapshot, firebaseFirestoreException ->
             if(firebaseFirestoreException != null){
                 Log.w(ContentValues.TAG, "Listen failed.", firebaseFirestoreException)
@@ -44,10 +46,11 @@ class NoticeFragment : Fragment() {
             noticeArray.clear()
             for((index, document) in querySnapshot!!.withIndex())
             {
+                val time = LocalDate.now()
                 val data = NoticeListModel(document.get("content").toString(),
                     document.get("title").toString(),
                     document.get("nickname").toString(),
-                    "0")
+                    "0","$time")
                 document.reference.collection("comment").addSnapshotListener {
                         snapshot, firebaseFirestoreException ->
                     if(firebaseFirestoreException != null){
@@ -62,6 +65,8 @@ class NoticeFragment : Fragment() {
                 noticeArray.add(data)
                 adapter.notifyDataSetChanged()
             }
+
+
         }
         //어댑터 설정
         view.list_notice.adapter = adapter
@@ -80,20 +85,19 @@ class NoticeFragment : Fragment() {
                 .addOnSuccessListener {
                     querySnapshot ->
                     val intent = Intent(requireContext(), NoticeDetailActivity::class.java)
+                    val time = LocalDate.now()
 
                     intent.putExtra("content", querySnapshot.documents.get(position).get("content").toString())
                     intent.putExtra("nickname", querySnapshot.documents.get(position).get("nickname").toString())
                     intent.putExtra("title",querySnapshot.documents.get(position).get("title").toString())
+                    intent.putExtra("uid", querySnapshot.documents.get(position).get("uid").toString())
+                    intent.putExtra("time", "$time")
                     intent.putExtra("position", position)
                     
                     startActivity(intent)
 
                 }
         }
-
-
-
-
 
 
         return view

@@ -17,15 +17,11 @@ import java.time.LocalDate
 class NoticeFragmentAdapter(val context: Context, val dataArray : ArrayList<NoticeListModel>): BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view = LayoutInflater.from(context).inflate(R.layout.listview_noticefragment, null)
-        val now = LocalDate.now()
+        //val now = LocalDate.now()
         view.lv_title.setText(dataArray[position].title)
         view.lv_id.setText(dataArray[position].nickname)
         view.comment_count.setText(dataArray[position].commentCnt)
-        view.lv_time.setText("$now")
-        //view.comment_count.setText()
-
-
-
+        view.lv_time.setText(dataArray[position].time)
 
         return view
     }
