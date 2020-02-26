@@ -7,5 +7,6 @@ import com.google.firebase.firestore.IgnoreExtraProperties
 data class chatData(
     val username : String = "",
     val useruid : String = "",
-    val message : String =""
+    val message : String ="",
+    val timestamp : String = ""
 )

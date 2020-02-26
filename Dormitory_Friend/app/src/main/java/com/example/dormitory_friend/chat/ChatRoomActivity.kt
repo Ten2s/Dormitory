@@ -12,6 +12,8 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import kotlinx.android.synthetic.main.activity_chat_room.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class ChatRoomActivity : AppCompatActivity() {
 
@@ -54,8 +56,11 @@ class ChatRoomActivity : AppCompatActivity() {
         myRef.addChildEventListener(childEventListener)
 
         send_button.setOnClickListener {
+            val date = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofPattern("MM/dd hh:mm a")
+            val formatted = date.format(formatter)
             if(!message_txt.text.toString().equals("")) {
-                val data = chatData(name, FirebaseUtils.getUid(), message_txt.text.toString())
+                val data = chatData(name, FirebaseUtils.getUid(), message_txt.text.toString(), formatted)
                 myRef.push().setValue(data)
                 otherRef.push().setValue(data)
                 message_txt.setText("")

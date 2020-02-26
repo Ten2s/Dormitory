@@ -16,6 +16,7 @@ class ChatFragmentAdapter(val context: Context, val dataList : ArrayList<chatDat
 
         view.chat_list_nickname.setText((dataList[position].username))
         view.chat_list_recent.setText(dataList[position].message)
+        view.chat_recent_time.setText(dataList[position].timestamp)
         return view
     }
 
