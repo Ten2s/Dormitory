@@ -23,6 +23,9 @@ import kotlinx.android.synthetic.main.activity_chat_room.*
 import kotlinx.android.synthetic.main.fragment_chat.*
 import kotlinx.android.synthetic.main.fragment_chat.view.*
 import kotlinx.android.synthetic.main.fragment_chat.view.chatroomlist
+import java.util.*
+import kotlin.Comparator
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -61,12 +64,15 @@ class ChatFragment : Fragment() {
                                 FirebaseUtils.db.collection("users").document(id)
                                     .addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
                                         val message = messagenode.child("message").getValue().toString()
+                                        val time = messagenode.child("timestamp").getValue().toString()
                                         val messagemodel = chatData(
                                             documentSnapshot!!.get("nickname").toString(),
                                             id,
-                                            message
+                                            message,
+                                            time
                                             )
                                         chatRoomList.add(messagemodel)
+                                        chatRoomList.sortBy { it.timestamp }
                                         adapter.notifyDataSetChanged()
                                     }
                             }
