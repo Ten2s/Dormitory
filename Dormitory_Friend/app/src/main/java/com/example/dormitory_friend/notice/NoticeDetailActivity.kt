@@ -7,15 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.BaseAdapter
-import androidx.core.view.isInvisible
+import com.google.firebase.firestore.Query
 import com.example.dormitory_friend.FirebaseUtils
 import com.example.dormitory_friend.MainActivity
 import com.example.dormitory_friend.R
 import com.example.dormitory_friend.notice.adapters.NoticeCommentAdapter
 import kotlinx.android.synthetic.main.activity_notice_detail.*
-import kotlinx.android.synthetic.main.activity_notice_register.*
-import kotlinx.android.synthetic.main.listview_noticecomment.*
-import kotlinx.android.synthetic.main.undertab.*
 
 class NoticeDetailActivity : AppCompatActivity() {
 
@@ -45,7 +42,8 @@ class NoticeDetailActivity : AppCompatActivity() {
             register_delete.visibility = View.VISIBLE
         }
 
-        FirebaseUtils.db.collection("notice").addSnapshotListener {
+        FirebaseUtils.db.collection("notice").orderBy("time", Query.Direction.DESCENDING)
+            .addSnapshotListener {
                 querySnapshot, firebaseFirestoreException ->
             val id = querySnapshot!!.documents.get(position).id
 
@@ -74,7 +72,8 @@ class NoticeDetailActivity : AppCompatActivity() {
         comment_list.adapter = adapter
 
         register_commit_button.setOnClickListener{
-            FirebaseUtils.db.collection("notice").get().addOnSuccessListener {
+            FirebaseUtils.db.collection("notice").orderBy("time",Query.Direction.DESCENDING)
+                .get().addOnSuccessListener {
                 querySnapshot ->
 
                 val id = querySnapshot.documents.get(position).id
@@ -110,12 +109,14 @@ class NoticeDetailActivity : AppCompatActivity() {
             intent.putExtra("title", title )
             intent.putExtra("content", content)
             intent.putExtra("isModify", modifyFlag)
+            intent.putExtra("position", position)
             startActivity(intent)
         }
 
         //삭제 버튼 클릭
         register_delete.setOnClickListener{
-            FirebaseUtils.db.collection("notice").get().addOnSuccessListener {
+            FirebaseUtils.db.collection("notice").orderBy("time",Query.Direction.DESCENDING)
+                .get().addOnSuccessListener {
                 querySnapshot ->
 
                 val id = querySnapshot.documents.get(position).id

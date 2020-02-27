@@ -10,15 +10,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.dormitory_friend.FirebaseUtils
-import com.example.dormitory_friend.MainActivity
-
+import com.google.firebase.firestore.Query
 import com.example.dormitory_friend.R
 import com.example.dormitory_friend.notice.NoticeRegisterActivity
 import com.example.dormitory_friend.firstfragments.adapters.NoticeFragmentAdapter
 import com.example.dormitory_friend.notice.NoticeDetailActivity
-import kotlinx.android.synthetic.main.activity_notice_detail.*
 import kotlinx.android.synthetic.main.fragment_notice.view.*
-import kotlinx.android.synthetic.main.undertab.*
 import java.time.LocalDate
 
 /**
@@ -37,7 +34,8 @@ class NoticeFragment : Fragment() {
 
 
         //새로운 글 등록될 시 뷰업데이트
-        FirebaseUtils.db.collection("notice").orderBy("time").addSnapshotListener {
+        FirebaseUtils.db.collection("notice").orderBy("time", Query.Direction.DESCENDING)
+            .addSnapshotListener {
                 querySnapshot, firebaseFirestoreException ->
             if(firebaseFirestoreException != null){
                 Log.w(ContentValues.TAG, "Listen failed.", firebaseFirestoreException)
@@ -46,11 +44,12 @@ class NoticeFragment : Fragment() {
             noticeArray.clear()
             for((index, document) in querySnapshot!!.withIndex())
             {
-                val time = LocalDate.now()
                 val data = NoticeListModel(document.get("content").toString(),
                     document.get("title").toString(),
                     document.get("nickname").toString(),
-                    "0","$time")
+                    "0",
+                    document.get("time").toString()
+                )
                 document.reference.collection("comment").addSnapshotListener {
                         snapshot, firebaseFirestoreException ->
                     if(firebaseFirestoreException != null){
@@ -63,6 +62,7 @@ class NoticeFragment : Fragment() {
                 }
 
                 noticeArray.add(data)
+//                noticeArray.reverse()
                 adapter.notifyDataSetChanged()
             }
 
@@ -81,8 +81,8 @@ class NoticeFragment : Fragment() {
 
         //게시판 작성된 목록 클릭 시 notice_detail로 넘어감
         view.list_notice.setOnItemClickListener { parent, view, position, id ->
-            FirebaseUtils.db.collection("notice").get()
-                .addOnSuccessListener {
+            FirebaseUtils.db.collection("notice").orderBy("time", Query.Direction.DESCENDING)
+                .get().addOnSuccessListener {
                     querySnapshot ->
                     val intent = Intent(requireContext(), NoticeDetailActivity::class.java)
                     val time = LocalDate.now()
