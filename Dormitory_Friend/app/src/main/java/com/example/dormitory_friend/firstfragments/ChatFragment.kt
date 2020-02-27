@@ -73,6 +73,7 @@ class ChatFragment : Fragment() {
                                             )
                                         chatRoomList.add(messagemodel)
                                         chatRoomList.sortBy { it.timestamp }
+                                        Collections.reverse(chatRoomList)
                                         adapter.notifyDataSetChanged()
                                     }
                             }
