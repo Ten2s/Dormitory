@@ -51,4 +51,5 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:5.0.0'
     implementation 'com.google.firebase:firebase-database:19.2.1'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.2.1"
+    implementation 'com.firebaseui:firebase-ui-storage:4.3.1'
 }
